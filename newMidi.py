@@ -11,11 +11,14 @@ outfile.tracks.append(track)
 
 track.append(Message('program_change', program=12))
 
-delta = 32
 for i in range(10):
     note = random.choice(notes)
-    track.append(Message('note_on', note=note, velocity=100, time=delta))
-    track.append(Message('note_off', note=note, velocity=100, time=delta))
+    track.append(Message('note_on', note=note, velocity=100, time=20))
+    track.append(Message('note_off', note=note, velocity=100, time=64))
+    track.append(Message('note_off', note=note, velocity=100, time=43))
+    track.append(Message('note_off', note=note, velocity=100, time=78))
+    track.append(Message('note_off', note=note, velocity=100, time=100))
+    track.append(Message('note_off', note=note, velocity=100, time=50))
 
 songName = 'newSong.mid'
 
