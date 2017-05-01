@@ -16,11 +16,6 @@ for i in range(100):
     notes.append([x] + [y] + [z])
     print(notes)
 
-    # np.insert(notes, i, r.randint(1, 2), axis=2)
-    # notes[0][0] = r.randint(30, 90)
-    # notes[i][1] = r.randint(40, 80)
-    # notes[i][2] = 0.5 + r.random()*2
-
 mid = MidiFile()
 track = MidiTrack()
 mid.tracks.append(track)
@@ -31,7 +26,8 @@ for note in notes:
     bytesOfInt = note.astype(int)
     print(note)
     msg = Message.from_bytes(bytesOfInt[0:3])
-    time = int(note[3] / 0.001025)  # to rescale to midi's delta ticks. arbitrary value for now.
+    # Rescale to midi delta ticks. Arbitrary value for now
+    time = int(note[3] / 0.001025)
     msg.time = time
     track.append(msg)
 

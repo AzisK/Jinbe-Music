@@ -1,7 +1,7 @@
 from mido import MidiFile, MidiTrack, Message
 import numpy as np
 
-mid = MidiFile('1.mid')  # a Mozart piece
+mid = MidiFile('1.mid')
 
 notes = []
 
@@ -12,9 +12,11 @@ for msg in mid:
     time += msg.time
     if not msg.type == 'MetaMessage':
         if msg.type == 'note_on':
-            # note in vector form to train on
+            # Note in vector form to train on
             note = msg.bytes()
-            # only interested in the note and velocity. note message is in the form of [type, note, velocity]
+            # Only interested in the note and velocity
+            # Note message is in the form of
+            # [type, note, velocity]
             note = note[1:3]
             note.append(time-prev)
             prev = time
@@ -30,23 +32,9 @@ for note in notes:
     bytesOfInt = note.astype(int)
     print(note)
     msg = Message.from_bytes(bytesOfInt[0:3])
-    time = int(note[3] / 0.001025)  # to rescale to midi's delta ticks. arbitrary value for now.
+    # Rescale to midi delta ticks. Arbitrary value for now
+    time = int(note[3]/0.001025)
     msg.time = time
     track.append(msg)
 
-# t = []
-
-# for note in notes:
-#     note[0] = (note[0]-24)/88
-#     note[1] = note[1]/127
-#     t.append(note[2])
-#
-# max_t = max(t)
-#
-# for note in notes:
-# 	note[2] = note[2]/max_t
-
-print(notes)
-print(len(notes))
-
-song.save('1X.mid')
+song.save("1X.mid")
