@@ -1,6 +1,6 @@
 from mido import MidiFile
 
-mid = MidiFile('randomSong.mid')
+mid = MidiFile('6.mid')
 
 for i, track in enumerate(mid.tracks):
     print('Track {}: {}'.format(i, track.name))
