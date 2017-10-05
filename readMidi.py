@@ -14,6 +14,7 @@ for msg in mid:
         if msg.type == 'note_on':
             # Note in vector form to train on
             note = msg.bytes()
+            print(note)
             # Only interested in the note and velocity
             # Note message is in the form of
             # [type, note, velocity]
